@@ -1,0 +1,151 @@
+.detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.detail-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.detail-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--card-bg);
+  border-radius: 16px 16px 0 0;
+  padding: 24px 20px 32px;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+}
+
+.detail-sheet.open {
+  transform: translateY(0);
+}
+
+.detail-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.detail-name {
+  margin: 0 32px 4px 0;
+  font-size: 22px;
+}
+
+.detail-category {
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.detail-address {
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+.detail-status {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.detail-status.open {
+  color: #2e8b57;
+}
+
+.detail-section {
+  margin-top: 20px;
+}
+
+.detail-section h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--text-h);
+}
+
+.detail-hours {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.detail-hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 15px;
+}
+
+.detail-hours-row.today {
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.detail-season {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.detail-programs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.detail-programs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 15px;
+}
+
+.detail-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-links a {
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.detail-notes {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.detail-source-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: underline;
+}

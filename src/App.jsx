@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Map from './components/Map'
 import PlaceList from './components/PlaceList'
 import FilterBar from './components/FilterBar'
+import DetailSheet from './components/DetailSheet'
 import { fetchPlaces } from './utils/places'
 import { getNow, isOpenNow } from './utils/hours'
 import './App.css'
@@ -26,6 +27,7 @@ function App() {
   const [places, setPlaces] = useState([])
   const [status, setStatus] = useState('loading')
   const [filters, setFilters] = useState(INITIAL_FILTERS)
+  const [selectedPlace, setSelectedPlace] = useState(null)
   const now = useMemo(() => getNow(), [])
 
   useEffect(() => {
@@ -68,9 +70,10 @@ function App() {
       )}
       {status === 'ready' && (
         <>
-          <Map places={filteredPlaces} />
+          <Map places={filteredPlaces} onSelectPlace={setSelectedPlace} />
           <FilterBar filters={filters} onToggle={toggleFilter} />
-          <PlaceList places={filteredPlaces} now={now} />
+          <PlaceList places={filteredPlaces} now={now} onSelectPlace={setSelectedPlace} />
+          <DetailSheet place={selectedPlace} now={now} onClose={() => setSelectedPlace(null)} />
         </>
       )}
     </div>

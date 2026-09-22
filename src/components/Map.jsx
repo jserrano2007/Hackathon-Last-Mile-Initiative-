@@ -1,9 +1,9 @@
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, CircleMarker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { HARTFORD_CENTER, categoryColor, hasCoords } from '../utils/places'
 import './Map.css'
 
-function Map({ places }) {
+function Map({ places, onSelectPlace }) {
   const pinnedPlaces = places.filter(hasCoords)
 
   return (
@@ -29,13 +29,10 @@ function Map({ places }) {
               fillColor: categoryColor(place.category),
               fillOpacity: 0.9,
             }}
-          >
-            <Popup>
-              <strong>{place.name}</strong>
-              <br />
-              {place.address}
-            </Popup>
-          </CircleMarker>
+            eventHandlers={{
+              click: () => onSelectPlace(place),
+            }}
+          />
         ))}
       </MapContainer>
     </div>

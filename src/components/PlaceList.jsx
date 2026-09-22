@@ -2,7 +2,7 @@ import { HARTFORD_CENTER, categoryLabel, distanceMiles, hasCoords } from '../uti
 import { getNow, getStatusLine } from '../utils/hours'
 import './PlaceList.css'
 
-function PlaceList({ places, now = getNow() }) {
+function PlaceList({ places, now = getNow(), onSelectPlace }) {
   const sorted = [...places].sort((a, b) => {
     const aHas = hasCoords(a)
     const bHas = hasCoords(b)
@@ -20,7 +20,19 @@ function PlaceList({ places, now = getNow() }) {
       {sorted.map((place) => {
         const statusLine = getStatusLine(place, now)
         return (
-          <li key={place.id} className="place-card">
+          <li
+            key={place.id}
+            className="place-card"
+            role="button"
+            tabIndex={0}
+            onClick={() => onSelectPlace(place)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                onSelectPlace(place)
+              }
+            }}
+          >
             <div className="place-card-header">
               <span className="place-name">{place.name}</span>
               {hasCoords(place) && (

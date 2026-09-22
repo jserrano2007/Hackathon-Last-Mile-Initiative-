@@ -9,6 +9,16 @@ const WEEKDAY_NAMES = [
   'Saturday',
 ]
 
+export const WEEK_ORDER = [
+  { key: 'mon', label: 'Monday' },
+  { key: 'tue', label: 'Tuesday' },
+  { key: 'wed', label: 'Wednesday' },
+  { key: 'thu', label: 'Thursday' },
+  { key: 'fri', label: 'Friday' },
+  { key: 'sat', label: 'Saturday' },
+  { key: 'sun', label: 'Sunday' },
+]
+
 export function getNow() {
   if (typeof window !== 'undefined') {
     const nowParam = new URLSearchParams(window.location.search).get('now')
@@ -25,7 +35,7 @@ function toMinutes(hhmm) {
   return h * 60 + m
 }
 
-function formatTime(hhmm) {
+export function formatTime(hhmm) {
   const [hStr, mStr] = hhmm.split(':')
   let h = Number(hStr)
   const m = Number(mStr)
@@ -45,6 +55,15 @@ function inSeason(season, now) {
   if (!season) return true
   const today = dateStr(now)
   return today >= season.start && today <= season.end
+}
+
+export function getTodayKey(now = getNow()) {
+  return DAY_KEYS[now.getDay()]
+}
+
+export function formatDayRanges(ranges) {
+  if (!ranges || ranges.length === 0) return 'Closed'
+  return ranges.map(([start, end]) => `${formatTime(start)}–${formatTime(end)}`).join(', ')
 }
 
 export function isOpenNow(source, now = getNow()) {
