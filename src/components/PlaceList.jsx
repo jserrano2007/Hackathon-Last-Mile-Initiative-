@@ -1,5 +1,6 @@
 import { HARTFORD_CENTER, categoryLabel, distanceMiles, hasCoords } from '../utils/places'
 import { getNow, getStatusLine } from '../utils/hours'
+import { formatListingPrice, getReadyStatus } from '../utils/listings'
 import './PlaceList.css'
 
 function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CENTER }) {
@@ -18,7 +19,8 @@ function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CE
   return (
     <ul className="place-list">
       {sorted.map((place) => {
-        const statusLine = getStatusLine(place, now)
+        const isGrower = place.category === 'home_grower'
+        const statusLine = isGrower ? getReadyStatus(place, now) : getStatusLine(place, now)
         return (
           <li
             key={place.id}
@@ -43,7 +45,13 @@ function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CE
               )}
             </div>
             <div className="place-category">{categoryLabel(place.category)}</div>
-            <div className="place-address">{place.address}</div>
+            {isGrower ? (
+              <div className="place-address">
+                {place.cropName} · {formatListingPrice(place)}
+              </div>
+            ) : (
+              <div className="place-address">{place.address}</div>
+            )}
             <div className={`place-status${statusLine.open ? ' open' : ''}`}>
               {statusLine.text}
             </div>

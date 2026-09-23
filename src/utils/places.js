@@ -7,6 +7,7 @@ export const CATEGORY_LABELS = {
   urban_farm: 'Urban farm',
   community_garden: 'Community garden',
   food_pantry: 'Food pantry',
+  home_grower: 'Home grower',
 }
 
 export const CATEGORY_COLORS = {
@@ -16,6 +17,7 @@ export const CATEGORY_COLORS = {
   urban_farm: '#0b4d2e',
   community_garden: '#0b4d2e',
   food_pantry: '#6b7280',
+  home_grower: '#dc2626',
 }
 
 export function categoryLabel(category) {

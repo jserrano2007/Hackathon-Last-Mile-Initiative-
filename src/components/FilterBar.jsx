@@ -7,6 +7,7 @@ const CHIPS = [
   { key: 'grocery', label: 'Grocery' },
   { key: 'farms', label: 'Farms' },
   { key: 'freeFood', label: 'Free food' },
+  { key: 'neighbors', label: 'Neighbors' },
 ]
 
 function FilterBar({ filters, onToggle }) {

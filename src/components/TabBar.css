@@ -1,0 +1,29 @@
+.tab-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  border-top: 1px solid var(--border);
+  background: var(--card-bg);
+  z-index: 1500;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.tab-bar-btn {
+  flex: 1;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 4px 12px;
+  border: none;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tab-bar-btn.active {
+  color: var(--accent);
+}
