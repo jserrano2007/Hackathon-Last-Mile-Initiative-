@@ -2,7 +2,7 @@ import { HARTFORD_CENTER, categoryLabel, distanceMiles, hasCoords } from '../uti
 import { getNow, getStatusLine } from '../utils/hours'
 import './PlaceList.css'
 
-function PlaceList({ places, now = getNow(), onSelectPlace }) {
+function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CENTER }) {
   const sorted = [...places].sort((a, b) => {
     const aHas = hasCoords(a)
     const bHas = hasCoords(b)
@@ -10,8 +10,8 @@ function PlaceList({ places, now = getNow(), onSelectPlace }) {
     if (!aHas && bHas) return 1
     if (!aHas && !bHas) return 0
     return (
-      distanceMiles(HARTFORD_CENTER.lat, HARTFORD_CENTER.lng, a.lat, a.lng) -
-      distanceMiles(HARTFORD_CENTER.lat, HARTFORD_CENTER.lng, b.lat, b.lng)
+      distanceMiles(center.lat, center.lng, a.lat, a.lng) -
+      distanceMiles(center.lat, center.lng, b.lat, b.lng)
     )
   })
 
@@ -37,12 +37,7 @@ function PlaceList({ places, now = getNow(), onSelectPlace }) {
               <span className="place-name">{place.name}</span>
               {hasCoords(place) && (
                 <span className="place-distance">
-                  {distanceMiles(
-                    HARTFORD_CENTER.lat,
-                    HARTFORD_CENTER.lng,
-                    place.lat,
-                    place.lng,
-                  ).toFixed(1)}{' '}
+                  {distanceMiles(center.lat, center.lng, place.lat, place.lng).toFixed(1)}{' '}
                   mi
                 </span>
               )}

@@ -43,6 +43,12 @@ export function hasCoords(place) {
   return typeof place.lat === 'number' && typeof place.lng === 'number'
 }
 
+export function directionsAddress(place) {
+  const streetAddress = place.address.replace(/\s*\([^)]*\)/g, '').trim()
+  const cityState = place.zip ? `${place.city}, CT ${place.zip}` : `${place.city}, CT`
+  return `${streetAddress}, ${cityState}`
+}
+
 export async function fetchPlaces() {
   const res = await fetch('/data/sources.json')
   if (!res.ok) {

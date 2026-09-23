@@ -74,6 +74,24 @@
   color: #2e8b57;
 }
 
+.detail-directions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.detail-direction-btn {
+  flex: 1;
+  text-align: center;
+  padding: 14px 10px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .detail-section {
   margin-top: 20px;
 }

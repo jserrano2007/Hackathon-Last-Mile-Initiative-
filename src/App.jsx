@@ -3,8 +3,10 @@ import Map from './components/Map'
 import PlaceList from './components/PlaceList'
 import FilterBar from './components/FilterBar'
 import DetailSheet from './components/DetailSheet'
-import { fetchPlaces } from './utils/places'
+import LocationControls from './components/LocationControls'
+import { HARTFORD_CENTER, fetchPlaces } from './utils/places'
 import { getNow, isOpenNow } from './utils/hours'
+import { NEIGHBORHOODS } from './utils/neighborhoods'
 import './App.css'
 
 const CATEGORY_GROUPS = {
@@ -28,6 +30,10 @@ function App() {
   const [status, setStatus] = useState('loading')
   const [filters, setFilters] = useState(INITIAL_FILTERS)
   const [selectedPlace, setSelectedPlace] = useState(null)
+  const [center, setCenter] = useState(HARTFORD_CENTER)
+  const [userLocation, setUserLocation] = useState(null)
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState('')
+  const [locationStatus, setLocationStatus] = useState('idle')
   const now = useMemo(() => getNow(), [])
 
   useEffect(() => {
@@ -41,6 +47,35 @@ function App() {
 
   function toggleFilter(key) {
     setFilters((prev) => ({ ...prev, [key]: !prev[key] }))
+  }
+
+  function handleUseMyLocation() {
+    if (!navigator.geolocation) {
+      setLocationStatus('error')
+      return
+    }
+    setLocationStatus('locating')
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = { lat: position.coords.latitude, lng: position.coords.longitude }
+        setUserLocation(coords)
+        setCenter(coords)
+        setSelectedNeighborhood('')
+        setLocationStatus('idle')
+      },
+      () => {
+        setLocationStatus('error')
+      },
+      { enableHighAccuracy: true, timeout: 10000 },
+    )
+  }
+
+  function handleSelectNeighborhood(key) {
+    setSelectedNeighborhood(key)
+    setLocationStatus('idle')
+    const neighborhood = NEIGHBORHOODS.find((n) => n.key === key)
+    setUserLocation(null)
+    setCenter(neighborhood ? { lat: neighborhood.lat, lng: neighborhood.lng } : HARTFORD_CENTER)
   }
 
   const filteredPlaces = useMemo(() => {
@@ -70,9 +105,25 @@ function App() {
       )}
       {status === 'ready' && (
         <>
-          <Map places={filteredPlaces} onSelectPlace={setSelectedPlace} />
+          <LocationControls
+            selectedNeighborhood={selectedNeighborhood}
+            locationStatus={locationStatus}
+            onUseMyLocation={handleUseMyLocation}
+            onSelectNeighborhood={handleSelectNeighborhood}
+          />
+          <Map
+            places={filteredPlaces}
+            onSelectPlace={setSelectedPlace}
+            center={center}
+            userLocation={userLocation}
+          />
           <FilterBar filters={filters} onToggle={toggleFilter} />
-          <PlaceList places={filteredPlaces} now={now} onSelectPlace={setSelectedPlace} />
+          <PlaceList
+            places={filteredPlaces}
+            now={now}
+            onSelectPlace={setSelectedPlace}
+            center={center}
+          />
           <DetailSheet place={selectedPlace} now={now} onClose={() => setSelectedPlace(null)} />
         </>
       )}

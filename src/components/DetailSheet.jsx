@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { WEEK_ORDER, formatDayRanges, getStatusLine, getTodayKey } from '../utils/hours'
-import { categoryLabel } from '../utils/places'
+import { categoryLabel, directionsAddress } from '../utils/places'
 import './DetailSheet.css'
 
 function programStatus(value) {
@@ -52,6 +52,25 @@ function DetailSheet({ place, now, onClose }) {
         <div className="detail-category">{categoryLabel(displayPlace.category)}</div>
         <div className="detail-address">{displayPlace.address}</div>
         <div className={`detail-status${statusLine.open ? ' open' : ''}`}>{statusLine.text}</div>
+
+        <div className="detail-directions">
+          <a
+            className="detail-direction-btn"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(directionsAddress(displayPlace))}&travelmode=transit`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Bus directions
+          </a>
+          <a
+            className="detail-direction-btn"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(directionsAddress(displayPlace))}&travelmode=walking`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Walking directions
+          </a>
+        </div>
 
         <section className="detail-section">
           <h3>Hours</h3>
