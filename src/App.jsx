@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import TabBar from './components/TabBar'
 import FindFoodTab from './components/FindFoodTab'
 import SellForm from './components/SellForm'
+import GrowGuides from './components/GrowGuides'
 import ComingSoon from './components/ComingSoon'
 import { fetchPlaces } from './utils/places'
 import { getNow } from './utils/hours'
@@ -65,7 +66,7 @@ function App() {
             onRemoveListing={removeListing}
           />
         )}
-        {activeTab === 'grow' && <ComingSoon label="Grow" />}
+        {activeTab === 'grow' && <GrowGuides onStartTracking={() => setActiveTab('garden')} />}
         {activeTab === 'garden' && <ComingSoon label="My garden" />}
       </main>
 

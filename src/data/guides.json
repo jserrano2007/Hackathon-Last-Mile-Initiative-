@@ -1,0 +1,76 @@
+{
+  "intro": "Costs and timing are starting estimates for Hartford, CT. The average last spring frost is around early May, so warm-season crops go outside mid-to-late May.",
+  "crops": [
+    {
+      "id": "tomatoes",
+      "name": "Tomatoes",
+      "difficulty": "Moderate",
+      "daysToHarvest": 75,
+      "startingCost": "$15-30 for a 5-gal bucket, soil, stake, and one seedling",
+      "space": "Container (5 gal+) or raised bed; full sun, 6-8 hrs",
+      "whenToPlant": "Seedlings outside mid-to-late May",
+      "watering": "Deep watering 2-3x a week; daily in heat for containers",
+      "troubleSigns": "Yellow lower leaves with brown spots (early blight); cracked fruit from uneven watering; dark sunken fruit bottoms (blossom end rot)"
+    },
+    {
+      "id": "lettuce",
+      "name": "Lettuce",
+      "difficulty": "Easy",
+      "daysToHarvest": 50,
+      "startingCost": "$5-15 for seeds and a shallow container",
+      "space": "Any 6\"+ container; tolerates part shade",
+      "whenToPlant": "Seeds April-May, again mid-August for fall",
+      "watering": "Keep soil evenly moist",
+      "troubleSigns": "Bolting (tall stalk, bitter leaves) in summer heat; slugs leave holes and slime trails"
+    },
+    {
+      "id": "peppers",
+      "name": "Peppers",
+      "difficulty": "Moderate",
+      "daysToHarvest": 75,
+      "startingCost": "$10-25 per container plant",
+      "space": "Container (3-5 gal) or bed; full sun",
+      "whenToPlant": "Seedlings outside late May once nights stay above 50F",
+      "watering": "Steady moisture; don't let containers dry out",
+      "troubleSigns": "Flowers dropping in extreme heat; soft sunken spots on fruit"
+    },
+    {
+      "id": "basil",
+      "name": "Basil",
+      "difficulty": "Easy",
+      "daysToHarvest": 60,
+      "startingCost": "$5-10 for seeds or one starter plant",
+      "space": "Small pot on a sunny windowsill or porch",
+      "whenToPlant": "Outside late May; indoors any time with a sunny window",
+      "watering": "Moist, not soggy",
+      "troubleSigns": "Black leaves after cold nights; gray fuzz under leaves (downy mildew)"
+    },
+    {
+      "id": "bush-beans",
+      "name": "Bush beans",
+      "difficulty": "Easy",
+      "daysToHarvest": 55,
+      "startingCost": "$5-10 for seeds",
+      "space": "Wide container or bed; full sun, no trellis needed",
+      "whenToPlant": "Seeds late May through mid-July",
+      "watering": "About an inch a week",
+      "troubleSigns": "Poor sprouting in cold soil; tiny holes from beetles"
+    },
+    {
+      "id": "strawberries",
+      "name": "Strawberries",
+      "difficulty": "Moderate",
+      "daysToHarvest": 90,
+      "startingCost": "$15-30 for plants and a hanging basket or bed",
+      "space": "Hanging basket, strawberry pot, or bed; full sun",
+      "whenToPlant": "Plants in April-May; day-neutral types fruit the first summer",
+      "watering": "Regular watering, especially while fruiting",
+      "troubleSigns": "Gray mold on berries in wet weather; birds and squirrels"
+    }
+  ],
+  "hydroponics": {
+    "title": "Hydroponics",
+    "description": "Grow greens year-round with water and nutrients instead of soil. A simple Kratky jar or tote system (no pump) can start around $20-40; a small PVC channel system with a pump, $100-250.",
+    "localExample": "Local example: Levo International runs hydroponic farms in Hartford on Homestead Ave, Enfield St, and Garden St."
+  }
+}
