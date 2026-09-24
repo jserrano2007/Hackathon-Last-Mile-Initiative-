@@ -9,8 +9,8 @@
       "city": "Hartford",
       "zip": "06114",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7318,
+      "lng": -72.657,
       "hours": {
         "sat": [
           [
@@ -37,7 +37,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "Large early-morning weekend market, produce/plants/eggs/honey. One listing says 5-9am and a May 16 start; confirm.",
-      "sourceUrl": "https://ctvisit.com/articles/farmers-markets-connecticut"
+      "sourceUrl": "https://ctvisit.com/articles/farmers-markets-connecticut",
+      "approxCoords": true
     },
     {
       "id": "fm-oldstatehouse",
@@ -47,8 +48,8 @@
       "city": "Hartford",
       "zip": "06103",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7663,
+      "lng": -72.6734,
       "hours": {
         "tue": [
           [
@@ -75,7 +76,8 @@
       "website": "https://wp.cga.ct.gov/osh/events-page/farmers-market/",
       "status": "confirmed_2026",
       "notes": "Downtown. WIC/Senior FMNP accepted and doubled in 2026. SNAP not stated.",
-      "sourceUrl": "https://wp.cga.ct.gov/osh/events-page/farmers-market/"
+      "sourceUrl": "https://wp.cga.ct.gov/osh/events-page/farmers-market/",
+      "approxCoords": true
     },
     {
       "id": "fm-billingsforge",
@@ -85,8 +87,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.761,
+      "lng": -72.6862,
       "hours": {
         "thu": [
           [
@@ -107,7 +109,8 @@
       "website": "http://www.hartfordfarmersmarket.org/",
       "status": "confirmed_2026",
       "notes": "Frog Hollow. Some listings say 11-2. Has historically run an indoor winter market (Thu 3:30-6, Nov-Apr, 563 Broad St) - confirm for 2026-27.",
-      "sourceUrl": "https://buyctgrown.com/hartfordfarmersmarketatbillingsforge"
+      "sourceUrl": "https://buyctgrown.com/hartfordfarmersmarketatbillingsforge",
+      "approxCoords": true
     },
     {
       "id": "fm-knox",
@@ -117,8 +120,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7635,
+      "lng": -72.6905,
       "hours": {
         "mon": [
           [
@@ -139,7 +142,8 @@
       "website": "https://knoxhartford.org/",
       "status": "confirmed_2026",
       "notes": "Sells produce from KNOX urban farmers. SNAP/SFMNP from older listing.",
-      "sourceUrl": "https://knoxhartford.org/"
+      "sourceUrl": "https://knoxhartford.org/",
+      "approxCoords": true
     },
     {
       "id": "fm-westend",
@@ -181,8 +185,8 @@
       "city": "Hartford",
       "zip": "06112",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7921,
+      "lng": -72.6872,
       "hours": {
         "wed": [
           [
@@ -203,7 +207,8 @@
       "website": "https://hartfordfood.org/programs/north-end-farmers-market/",
       "status": "needs_verification",
       "notes": "Hartford Food System lists 9am-12pm; other listings 10am-1pm. Season dates approximate - confirm.",
-      "sourceUrl": "https://hartfordfood.org/programs/north-end-farmers-market/"
+      "sourceUrl": "https://hartfordfood.org/programs/north-end-farmers-market/",
+      "approxCoords": true
     },
     {
       "id": "fm-promisezone",
@@ -213,8 +218,8 @@
       "city": "Hartford",
       "zip": "06112",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7874,
+      "lng": -72.7,
       "hours": null,
       "season": null,
       "snap": null,
@@ -225,7 +230,8 @@
       "website": null,
       "status": "possibly_inactive",
       "notes": "Listed ~2020 as 2nd & 4th Saturdays 9-11am next to North United Methodist Church. No current info found.",
-      "sourceUrl": "https://www.metrohartford.com/newsroom/about-us/newsroom/farmers-markets-throughout-hartford"
+      "sourceUrl": "https://www.metrohartford.com/newsroom/about-us/newsroom/farmers-markets-throughout-hartford",
+      "approxCoords": true
     },
     {
       "id": "fm-parkst",
@@ -257,8 +263,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7527,
+      "lng": -72.7116,
       "hours": {
         "mon": [
           [
@@ -312,7 +318,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "Described in 2023 as the only full-service supermarket in city limits (western edge). SNAP assumed - chain accepts EBT.",
-      "sourceUrl": "https://stores.stopandshop.com/0634"
+      "sourceUrl": "https://stores.stopandshop.com/0634",
+      "approxCoords": true
     },
     {
       "id": "gr-savealot",
@@ -322,8 +329,8 @@
       "city": "Hartford",
       "zip": "06120",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7818,
+      "lng": -72.6737,
       "hours": {
         "mon": [
           [
@@ -377,7 +384,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "Clay Arsenal / North End.",
-      "sourceUrl": "https://www.yelp.com/biz/save-a-lot-hartford-2"
+      "sourceUrl": "https://www.yelp.com/biz/save-a-lot-hartford-2",
+      "approxCoords": true
     },
     {
       "id": "gr-ctown-park",
@@ -387,8 +395,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.756,
+      "lng": -72.7078,
       "hours": null,
       "season": null,
       "snap": null,
@@ -399,7 +407,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "Hours not listed on store page.",
-      "sourceUrl": "https://locations.ctownsupermarkets.com/ctown-supermarkets-c4acb3666207"
+      "sourceUrl": "https://locations.ctownsupermarkets.com/ctown-supermarkets-c4acb3666207",
+      "approxCoords": true
     },
     {
       "id": "gr-ctown-nb",
@@ -409,8 +418,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7478,
+      "lng": -72.6852,
       "hours": {
         "mon": [
           [
@@ -464,7 +473,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "",
-      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores"
+      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores",
+      "approxCoords": true
     },
     {
       "id": "gr-carlos",
@@ -474,8 +484,8 @@
       "city": "Hartford",
       "zip": "06105",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7677,
+      "lng": -72.6866,
       "hours": {
         "mon": [
           [
@@ -529,7 +539,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Produce selection unknown.",
-      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores"
+      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores",
+      "approxCoords": true
     },
     {
       "id": "gr-boricua",
@@ -539,8 +550,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7596,
+      "lng": -72.696,
       "hours": null,
       "season": null,
       "snap": null,
@@ -551,7 +562,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Produce selection and hours unknown.",
-      "sourceUrl": "https://www.superpages.com/hartford-ct/grocery-stores"
+      "sourceUrl": "https://www.superpages.com/hartford-ct/grocery-stores",
+      "approxCoords": true
     },
     {
       "id": "gr-town",
@@ -561,8 +573,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7565,
+      "lng": -72.705,
       "hours": {
         "mon": [
           [
@@ -616,7 +628,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Produce selection unknown.",
-      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores"
+      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores",
+      "approxCoords": true
     },
     {
       "id": "gr-central",
@@ -626,8 +639,8 @@
       "city": "Hartford",
       "zip": "06105",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7674,
+      "lng": -72.6878,
       "hours": null,
       "season": null,
       "snap": null,
@@ -638,7 +651,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Hours/produce unknown.",
-      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores"
+      "sourceUrl": "https://www.yellowpages.com/hartford-ct/grocery-stores",
+      "approxCoords": true
     },
     {
       "id": "gr-peruanito",
@@ -648,8 +662,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.759,
+      "lng": -72.683,
       "hours": {
         "mon": [
           [
@@ -703,7 +717,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Produce selection unknown.",
-      "sourceUrl": "https://www.superpages.com/hartford-ct/grocery-stores"
+      "sourceUrl": "https://www.superpages.com/hartford-ct/grocery-stores",
+      "approxCoords": true
     },
     {
       "id": "farm-levo",
@@ -713,8 +728,8 @@
       "city": "Hartford",
       "zip": "06112",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7803,
+      "lng": -72.7009,
       "hours": null,
       "season": null,
       "snap": null,
@@ -725,7 +740,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "Hydroponic farm with on-site farm stand (hours unknown). Also sites on Enfield St and Garden St. Near UHart; supplies UHart's pantry. Great partner for the DIY hydroponics section.",
-      "sourceUrl": "https://www.wfsb.com/2026/07/22/hartford-hydroponic-farm-says-its-lettuce-is-safe-connecticut-cyclosporiasis-cases-climb-56/"
+      "sourceUrl": "https://www.wfsb.com/2026/07/22/hartford-hydroponic-farm-says-its-lettuce-is-safe-connecticut-cyclosporiasis-cases-climb-56/",
+      "approxCoords": true
     },
     {
       "id": "farm-keney",
@@ -801,8 +817,8 @@
       "city": "Hartford",
       "zip": "06106",
       "inHartford": true,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7545,
+      "lng": -72.7043,
       "hours": {
         "mon": [
           [
@@ -844,7 +860,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Processes donated fresh produce for its pantry. Hours shown are produce drop-off hours; confirm pantry hours.",
-      "sourceUrl": "https://knoxhartford.org/community-gardens/"
+      "sourceUrl": "https://knoxhartford.org/community-gardens/",
+      "approxCoords": true
     },
     {
       "id": "nb-aldi-wh",
@@ -854,8 +871,8 @@
       "city": "West Hartford",
       "zip": "06110",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7448,
+      "lng": -72.7148,
       "hours": null,
       "season": null,
       "snap": true,
@@ -866,7 +883,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "Just over the line from Hartford's West End/Parkville.",
-      "sourceUrl": "https://www.fsis.usda.gov/sites/default/files/distro_list/2025-01/RC-001-2025-Retail-List.pdf"
+      "sourceUrl": "https://www.fsis.usda.gov/sites/default/files/distro_list/2025-01/RC-001-2025-Retail-List.pdf",
+      "approxCoords": true
     },
     {
       "id": "nb-aldi-eh",
@@ -876,8 +894,8 @@
       "city": "East Hartford",
       "zip": "06118",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.748,
+      "lng": -72.612,
       "hours": null,
       "season": null,
       "snap": true,
@@ -888,7 +906,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "",
-      "sourceUrl": "https://www.fsis.usda.gov/sites/default/files/distro_list/2025-01/RC-001-2025-Retail-List.pdf"
+      "sourceUrl": "https://www.fsis.usda.gov/sites/default/files/distro_list/2025-01/RC-001-2025-Retail-List.pdf",
+      "approxCoords": true
     },
     {
       "id": "nb-pricerite-wh",
@@ -898,8 +917,8 @@
       "city": "West Hartford",
       "zip": "06110",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7395,
+      "lng": -72.72,
       "hours": null,
       "season": null,
       "snap": null,
@@ -910,7 +929,8 @@
       "website": null,
       "status": "needs_verification",
       "notes": "",
-      "sourceUrl": "https://superpages.com/yellowpages/c-grocery+stores/s-ct/t-west+hartford"
+      "sourceUrl": "https://superpages.com/yellowpages/c-grocery+stores/s-ct/t-west+hartford",
+      "approxCoords": true
     },
     {
       "id": "nb-ctown-eh",
@@ -985,8 +1005,8 @@
       "city": "East Hartford",
       "zip": "06108",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.763,
+      "lng": -72.642,
       "hours": {
         "tue": [
           [
@@ -1007,7 +1027,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "No market Aug 4, 2026.",
-      "sourceUrl": "https://www.easthartfordct.gov/farmers-market"
+      "sourceUrl": "https://www.easthartfordct.gov/farmers-market",
+      "approxCoords": true
     },
     {
       "id": "nb-fm-wh",
@@ -1017,8 +1038,8 @@
       "city": "West Hartford",
       "zip": "06107",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.762,
+      "lng": -72.742,
       "hours": {
         "sat": [
           [
@@ -1039,7 +1060,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "Runs into December - one of the latest-season options.",
-      "sourceUrl": "https://www.westhartfordct.gov/visit-us/gardens-farms"
+      "sourceUrl": "https://www.westhartfordct.gov/visit-us/gardens-farms",
+      "approxCoords": true
     },
     {
       "id": "nb-fm-blueback",
@@ -1049,8 +1071,8 @@
       "city": "West Hartford",
       "zip": "06107",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.7621,
+      "lng": -72.7418,
       "hours": {
         "sun": [
           [
@@ -1071,7 +1093,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "",
-      "sourceUrl": "https://www.bluebackfarmersmarket.org/"
+      "sourceUrl": "https://www.bluebackfarmersmarket.org/",
+      "approxCoords": true
     },
     {
       "id": "nb-fm-wethersfield",
@@ -1081,8 +1104,8 @@
       "city": "Wethersfield",
       "zip": "06109",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.716,
+      "lng": -72.668,
       "hours": {
         "thu": [
           [
@@ -1103,7 +1126,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "",
-      "sourceUrl": "https://www.angiesantoro.com/blog/2026-ct-farmers-market-guide/"
+      "sourceUrl": "https://www.angiesantoro.com/blog/2026-ct-farmers-market-guide/",
+      "approxCoords": true
     },
     {
       "id": "nb-fm-windsor",
@@ -1113,8 +1137,8 @@
       "city": "Windsor",
       "zip": "06095",
       "inHartford": false,
-      "lat": null,
-      "lng": null,
+      "lat": 41.852,
+      "lng": -72.644,
       "hours": {
         "thu": [
           [
@@ -1135,7 +1159,8 @@
       "website": null,
       "status": "confirmed_2026",
       "notes": "",
-      "sourceUrl": "https://www.maryellenmaloney.com/blog/2026-ct-farmers-market-guide/"
+      "sourceUrl": "https://www.maryellenmaloney.com/blog/2026-ct-farmers-market-guide/",
+      "approxCoords": true
     }
   ],
   "resources": [
