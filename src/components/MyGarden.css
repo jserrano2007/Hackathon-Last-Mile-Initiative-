@@ -1,0 +1,225 @@
+.my-garden {
+  padding: 16px;
+}
+
+.garden-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.garden-form h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-h);
+}
+
+.garden-submit {
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.garden-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text);
+}
+
+.garden-empty p {
+  margin: 0 0 8px;
+}
+
+.garden-empty-btn {
+  margin-top: 8px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.garden-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.garden-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.garden-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.garden-card-header .place-name {
+  font-size: 19px;
+}
+
+.garden-method {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.garden-progress-track {
+  margin-top: 12px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.garden-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.garden-day-count {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.garden-photo-slot {
+  margin-top: 10px;
+  height: 0;
+}
+
+.garden-notes {
+  margin-top: 14px;
+}
+
+.garden-notes-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.garden-notes-input {
+  display: flex;
+  gap: 8px;
+}
+
+.garden-notes-input input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 15px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.garden-notes-input button {
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.garden-actions {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.garden-sell-btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.garden-remove-btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: #dc2626;
+  cursor: pointer;
+}
+
+.garden-confirm-remove {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.garden-confirm-yes {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.garden-confirm-no {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}

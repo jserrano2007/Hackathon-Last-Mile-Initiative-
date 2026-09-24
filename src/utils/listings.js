@@ -1,7 +1,8 @@
-import cropsData from '../data/crops.json'
 import { NEIGHBORHOODS } from './neighborhoods'
+import { CROPS, getCropById } from './crops'
+import { addDays, formatShortDate, parseDateStr, toDateStr } from './dates'
 
-export const CROPS = cropsData.crops
+export { CROPS, getCropById, formatShortDate }
 
 const STORAGE_KEY = 'freshmile_listings'
 const READY_EARLY_DAYS = 7
@@ -17,36 +18,10 @@ const UNIT_LABELS = {
   free: 'free',
 }
 
-export function getCropById(cropId) {
-  return CROPS.find((crop) => crop.id === cropId)
-}
-
-function parseDate(dateStr) {
-  const [y, m, d] = dateStr.split('-').map(Number)
-  return new Date(y, m - 1, d)
-}
-
-function addDays(date, days) {
-  const result = new Date(date)
-  result.setDate(result.getDate() + days)
-  return result
-}
-
-function toDateStr(date) {
-  const y = date.getFullYear()
-  const m = String(date.getMonth() + 1).padStart(2, '0')
-  const d = String(date.getDate()).padStart(2, '0')
-  return `${y}-${m}-${d}`
-}
-
-export function formatShortDate(dateStr) {
-  return parseDate(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-}
-
 export function getReadyWindow(datePlanted, cropId) {
   const crop = getCropById(cropId)
   if (!crop || !datePlanted) return null
-  const planted = parseDate(datePlanted)
+  const planted = parseDateStr(datePlanted)
   return {
     start: toDateStr(addDays(planted, crop.days - READY_EARLY_DAYS)),
     end: toDateStr(addDays(planted, crop.days + READY_LATE_DAYS)),

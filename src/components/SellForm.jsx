@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NEIGHBORHOODS } from '../utils/neighborhoods'
 import {
   CROPS,
@@ -29,8 +29,16 @@ const INITIAL_FORM = {
   snap: false,
 }
 
-function SellForm({ listings, now, onAddListing, onRemoveListing }) {
-  const [form, setForm] = useState(INITIAL_FORM)
+function SellForm({ listings, now, onAddListing, onRemoveListing, prefill, onConsumePrefill }) {
+  const [form, setForm] = useState(() => ({
+    ...INITIAL_FORM,
+    ...(prefill ? { cropId: prefill.cropId, datePlanted: prefill.datePlanted } : {}),
+  }))
+
+  useEffect(() => {
+    if (prefill) onConsumePrefill()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function updateField(key, value) {
     setForm((prev) => ({ ...prev, [key]: value }))
