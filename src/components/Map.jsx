@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
-import { MapContainer, TileLayer, CircleMarker, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, CircleMarker, Marker, useMap } from 'react-leaflet'
+import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { HARTFORD_CENTER, categoryColor, hasCoords } from '../utils/places'
+import { HARTFORD_CENTER, hasCoords } from '../utils/places'
+import { categoryColor } from '../utils/categories'
 import './Map.css'
 
 function RecenterMap({ center }) {
@@ -14,8 +16,18 @@ function RecenterMap({ center }) {
   return null
 }
 
+function clusterIcon(count) {
+  return L.divIcon({
+    html: `<div class="neighborhood-cluster-marker">${count}</div>`,
+    className: 'neighborhood-cluster-icon-wrapper',
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+  })
+}
+
 function Map({ places, onSelectPlace, center = HARTFORD_CENTER, userLocation }) {
-  const pinnedPlaces = places.filter(hasCoords)
+  const pinnedPlaces = places.filter((place) => !place.isNeighborhoodGroup && hasCoords(place))
+  const groupPlaces = places.filter((place) => place.isNeighborhoodGroup)
 
   return (
     <div className="place-map">
@@ -43,6 +55,16 @@ function Map({ places, onSelectPlace, center = HARTFORD_CENTER, userLocation }) 
             }}
             eventHandlers={{
               click: () => onSelectPlace(place),
+            }}
+          />
+        ))}
+        {groupPlaces.map((group) => (
+          <Marker
+            key={group.id}
+            position={[group.lat, group.lng]}
+            icon={clusterIcon(group.count)}
+            eventHandlers={{
+              click: () => onSelectPlace(group),
             }}
           />
         ))}

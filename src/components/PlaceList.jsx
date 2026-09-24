@@ -1,6 +1,6 @@
-import { HARTFORD_CENTER, categoryLabel, distanceMiles, hasCoords } from '../utils/places'
+import { HARTFORD_CENTER, distanceMiles, hasCoords } from '../utils/places'
+import { categoryColor, categoryLabel } from '../utils/categories'
 import { getNow, getStatusLine } from '../utils/hours'
-import { formatListingPrice, getReadyStatus } from '../utils/listings'
 import './PlaceList.css'
 
 function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CENTER }) {
@@ -19,8 +19,8 @@ function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CE
   return (
     <ul className="place-list">
       {sorted.map((place) => {
-        const isGrower = place.category === 'home_grower'
-        const statusLine = isGrower ? getReadyStatus(place, now) : getStatusLine(place, now)
+        const isGroup = place.isNeighborhoodGroup
+        const statusLine = isGroup ? null : getStatusLine(place, now)
         return (
           <li
             key={place.id}
@@ -44,17 +44,19 @@ function PlaceList({ places, now = getNow(), onSelectPlace, center = HARTFORD_CE
                 </span>
               )}
             </div>
-            <div className="place-category">{categoryLabel(place.category)}</div>
-            {isGrower ? (
-              <div className="place-address">
-                {place.cropName} · {formatListingPrice(place)}
-              </div>
-            ) : (
-              <div className="place-address">{place.address}</div>
-            )}
-            <div className={`place-status${statusLine.open ? ' open' : ''}`}>
-              {statusLine.text}
+            <div className="place-category" style={{ color: categoryColor(place.category) }}>
+              {isGroup ? 'Neighbors' : categoryLabel(place.category)}
             </div>
+            {isGroup ? (
+              <div className="place-status">Tap to see listings</div>
+            ) : (
+              <>
+                <div className="place-address">{place.address}</div>
+                <div className={`place-status${statusLine.open ? ' open' : ''}`}>
+                  {statusLine.text}
+                </div>
+              </>
+            )}
           </li>
         )
       })}

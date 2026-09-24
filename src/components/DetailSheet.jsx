@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { WEEK_ORDER, formatDayRanges, getStatusLine, getTodayKey } from '../utils/hours'
-import { categoryLabel, directionsAddress } from '../utils/places'
-import { formatListingPrice, formatShortDate, getReadyStatus, getReadyWindow } from '../utils/listings'
+import { directionsAddress } from '../utils/places'
+import { categoryLabel } from '../utils/categories'
 import './DetailSheet.css'
 
 function programStatus(value) {
@@ -29,10 +29,8 @@ function DetailSheet({ place, now, onClose }) {
 
   if (!displayPlace) return null
 
-  const isGrower = displayPlace.category === 'home_grower'
-  const statusLine = isGrower ? getReadyStatus(displayPlace, now) : getStatusLine(displayPlace, now)
+  const statusLine = getStatusLine(displayPlace, now)
   const todayKey = getTodayKey(now)
-  const readyWindow = isGrower ? getReadyWindow(displayPlace.datePlanted, displayPlace.cropId) : null
 
   return (
     <div
@@ -53,110 +51,73 @@ function DetailSheet({ place, now, onClose }) {
 
         <h2 className="detail-name">{displayPlace.name}</h2>
         <div className="detail-category">{categoryLabel(displayPlace.category)}</div>
-        {!isGrower && <div className="detail-address">{displayPlace.address}</div>}
+        <div className="detail-address">{displayPlace.address}</div>
         <div className={`detail-status${statusLine.open ? ' open' : ''}`}>{statusLine.text}</div>
 
-        {!isGrower && (
-          <div className="detail-directions">
-            <a
-              className="detail-direction-btn"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(directionsAddress(displayPlace))}&travelmode=transit`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Bus directions
-            </a>
-            <a
-              className="detail-direction-btn"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(directionsAddress(displayPlace))}&travelmode=walking`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Walking directions
-            </a>
-          </div>
-        )}
+        <div className="detail-directions">
+          <a
+            className="detail-direction-btn"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(directionsAddress(displayPlace))}&travelmode=transit`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Bus directions
+          </a>
+          <a
+            className="detail-direction-btn"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(directionsAddress(displayPlace))}&travelmode=walking`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Walking directions
+          </a>
+        </div>
 
-        {isGrower ? (
-          <section className="detail-section">
-            <h3>Listing details</h3>
-            <ul className="detail-programs">
-              <li>
-                <span>Crop</span>
-                <span>{displayPlace.cropName}</span>
-              </li>
-              <li>
-                <span>Price</span>
-                <span>{formatListingPrice(displayPlace)}</span>
-              </li>
-              <li>
-                <span>Ready window</span>
-                <span>
-                  {readyWindow
-                    ? `${formatShortDate(readyWindow.start)} – ${formatShortDate(readyWindow.end)}`
-                    : 'Unknown'}
+        <section className="detail-section">
+          <h3>Hours</h3>
+          <ul className="detail-hours">
+            {WEEK_ORDER.map((day) => (
+              <li
+                key={day.key}
+                className={`detail-hours-row${day.key === todayKey ? ' today' : ''}`}
+              >
+                <span className="detail-hours-day">{day.label}</span>
+                <span className="detail-hours-range">
+                  {formatDayRanges(displayPlace.hours?.[day.key])}
                 </span>
               </li>
-              <li>
-                <span>Neighborhood</span>
-                <span>{displayPlace.neighborhoodLabel}</span>
-              </li>
-              <li>
-                <span>SNAP</span>
-                <span>{displayPlace.snap ? 'Yes' : 'No'}</span>
-              </li>
-            </ul>
-            <p className="detail-notes">Exact pickup spot shared when you connect.</p>
-          </section>
-        ) : (
-          <>
-            <section className="detail-section">
-              <h3>Hours</h3>
-              <ul className="detail-hours">
-                {WEEK_ORDER.map((day) => (
-                  <li
-                    key={day.key}
-                    className={`detail-hours-row${day.key === todayKey ? ' today' : ''}`}
-                  >
-                    <span className="detail-hours-day">{day.label}</span>
-                    <span className="detail-hours-range">
-                      {formatDayRanges(displayPlace.hours?.[day.key])}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {displayPlace.season && (
-                <div className="detail-season">
-                  Season: {displayPlace.season.start} – {displayPlace.season.end}
-                </div>
-              )}
-            </section>
+            ))}
+          </ul>
+          {displayPlace.season && (
+            <div className="detail-season">
+              Season: {displayPlace.season.start} – {displayPlace.season.end}
+            </div>
+          )}
+        </section>
 
-            <section className="detail-section">
-              <h3>Assistance programs</h3>
-              <ul className="detail-programs">
-                <li>
-                  <span>SNAP</span>
-                  <span>{programStatus(displayPlace.snap)}</span>
-                </li>
-                <li>
-                  <span>SNAP match</span>
-                  <span>{programStatus(displayPlace.snapMatch)}</span>
-                </li>
-                <li>
-                  <span>WIC FMNP</span>
-                  <span>{programStatus(displayPlace.wicFmnp)}</span>
-                </li>
-                <li>
-                  <span>Senior FMNP</span>
-                  <span>{programStatus(displayPlace.seniorFmnp)}</span>
-                </li>
-              </ul>
-            </section>
-          </>
-        )}
+        <section className="detail-section">
+          <h3>Assistance programs</h3>
+          <ul className="detail-programs">
+            <li>
+              <span>SNAP</span>
+              <span>{programStatus(displayPlace.snap)}</span>
+            </li>
+            <li>
+              <span>SNAP match</span>
+              <span>{programStatus(displayPlace.snapMatch)}</span>
+            </li>
+            <li>
+              <span>WIC FMNP</span>
+              <span>{programStatus(displayPlace.wicFmnp)}</span>
+            </li>
+            <li>
+              <span>Senior FMNP</span>
+              <span>{programStatus(displayPlace.seniorFmnp)}</span>
+            </li>
+          </ul>
+        </section>
 
-        {!isGrower && (displayPlace.phone || displayPlace.website) && (
+        {(displayPlace.phone || displayPlace.website) && (
           <section className="detail-section detail-links">
             {displayPlace.phone && (
               <a href={`tel:${displayPlace.phone.replace(/[^\d+]/g, '')}`}>
@@ -171,14 +132,14 @@ function DetailSheet({ place, now, onClose }) {
           </section>
         )}
 
-        {!isGrower && displayPlace.notes && (
+        {displayPlace.notes && (
           <section className="detail-section">
             <h3>Notes</h3>
             <p className="detail-notes">{displayPlace.notes}</p>
           </section>
         )}
 
-        {!isGrower && displayPlace.sourceUrl && (
+        {displayPlace.sourceUrl && (
           <a
             className="detail-source-link"
             href={displayPlace.sourceUrl}

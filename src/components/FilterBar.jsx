@@ -1,13 +1,14 @@
+import { categoryColor } from '../utils/categories'
 import './FilterBar.css'
 
 const CHIPS = [
   { key: 'openNow', label: 'Open now' },
   { key: 'snap', label: 'Takes SNAP' },
-  { key: 'markets', label: 'Markets' },
-  { key: 'grocery', label: 'Grocery' },
-  { key: 'farms', label: 'Farms' },
-  { key: 'freeFood', label: 'Free food' },
-  { key: 'neighbors', label: 'Neighbors' },
+  { key: 'markets', label: 'Markets', color: categoryColor('farmers_market') },
+  { key: 'grocery', label: 'Grocery', color: categoryColor('grocery') },
+  { key: 'farms', label: 'Farms', color: categoryColor('urban_farm') },
+  { key: 'freeFood', label: 'Free food', color: categoryColor('food_pantry') },
+  { key: 'neighbors', label: 'Neighbors', color: categoryColor('home_grower') },
 ]
 
 function FilterBar({ filters, onToggle }) {
@@ -20,6 +21,11 @@ function FilterBar({ filters, onToggle }) {
           className={`filter-chip${filters[chip.key] ? ' active' : ''}`}
           aria-pressed={filters[chip.key]}
           onClick={() => onToggle(chip.key)}
+          style={
+            filters[chip.key] && chip.color
+              ? { background: chip.color, borderColor: chip.color }
+              : undefined
+          }
         >
           {chip.label}
         </button>

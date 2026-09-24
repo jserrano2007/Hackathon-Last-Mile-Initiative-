@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { CROPS, GROWING_METHODS, getGrowthProgress } from '../utils/plantings'
+import { CROPS, GROWING_METHODS, getGrowthProgress, getListingEligibility } from '../utils/plantings'
 import { formatShortDate, toDateStr } from '../utils/dates'
 import './MyGarden.css'
 
 function MyGarden({
   plantings,
+  listings,
   prefillCropId,
   now,
   onAddPlanting,
@@ -130,6 +131,8 @@ function MyGarden({
             const progress = getGrowthProgress(planting, now)
             if (!progress) return null
             const isConfirming = confirmingRemoveId === planting.id
+            const existingListing = listings.find((listing) => listing.plantingId === planting.id)
+            const eligibility = getListingEligibility(planting, now)
 
             return (
               <li key={planting.id} className="garden-card">
@@ -180,15 +183,33 @@ function MyGarden({
                 </div>
 
                 <div className="garden-actions">
-                  <button
-                    type="button"
-                    className="garden-sell-btn"
-                    onClick={() =>
-                      onListForSale({ cropId: planting.cropId, datePlanted: planting.datePlanted })
-                    }
-                  >
-                    List for sale
-                  </button>
+                  {existingListing ? (
+                    <button
+                      type="button"
+                      className="garden-sell-btn"
+                      onClick={() => onListForSale({ mode: 'edit', listing: existingListing })}
+                    >
+                      Edit listing
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="garden-sell-btn"
+                      disabled={!eligibility.canList}
+                      onClick={() =>
+                        onListForSale({
+                          mode: 'create',
+                          plantingId: planting.id,
+                          cropId: planting.cropId,
+                          datePlanted: planting.datePlanted,
+                        })
+                      }
+                    >
+                      {eligibility.canList
+                        ? 'List for sale'
+                        : `You can list this in ${eligibility.daysUntilEligible} day${eligibility.daysUntilEligible === 1 ? '' : 's'}`}
+                    </button>
+                  )}
 
                   {isConfirming ? (
                     <div className="garden-confirm-remove">

@@ -3,11 +3,13 @@ import Map from './Map'
 import PlaceList from './PlaceList'
 import FilterBar from './FilterBar'
 import DetailSheet from './DetailSheet'
+import NeighborhoodSheet from './NeighborhoodSheet'
 import LocationControls from './LocationControls'
+import CategoryLegend from './CategoryLegend'
 import { HARTFORD_CENTER } from '../utils/places'
 import { isOpenNow } from '../utils/hours'
 import { NEIGHBORHOODS } from '../utils/neighborhoods'
-import { listingToPlace } from '../utils/listings'
+import { groupListingsByNeighborhood } from '../utils/listings'
 
 const CATEGORY_GROUPS = {
   markets: ['farmers_market'],
@@ -30,6 +32,7 @@ const INITIAL_FILTERS = {
 function FindFoodTab({ sources, listings, now }) {
   const [filters, setFilters] = useState(INITIAL_FILTERS)
   const [selectedPlace, setSelectedPlace] = useState(null)
+  const [selectedGroup, setSelectedGroup] = useState(null)
   const [center, setCenter] = useState(HARTFORD_CENTER)
   const [userLocation, setUserLocation] = useState(null)
   const [selectedNeighborhood, setSelectedNeighborhood] = useState('')
@@ -68,26 +71,42 @@ function FindFoodTab({ sources, listings, now }) {
     setCenter(neighborhood ? { lat: neighborhood.lat, lng: neighborhood.lng } : HARTFORD_CENTER)
   }
 
-  const allPlaces = useMemo(
-    () => [...sources, ...listings.map(listingToPlace)],
-    [sources, listings],
-  )
+  function handleSelectPlace(place) {
+    if (place.isNeighborhoodGroup) {
+      setSelectedGroup(place)
+    } else {
+      setSelectedPlace(place)
+    }
+  }
 
-  const filteredPlaces = useMemo(() => {
+  const allowedCategories = useMemo(() => {
     const activeCategoryKeys = Object.keys(CATEGORY_GROUPS).filter((key) => filters[key])
-    const allowedCategories = activeCategoryKeys.length
+    return activeCategoryKeys.length
       ? activeCategoryKeys.flatMap((key) => CATEGORY_GROUPS[key])
       : null
+  }, [filters])
 
-    return allPlaces.filter((place) => {
-      if (allowedCategories && !allowedCategories.includes(place.category)) return false
-      if (filters.snap && place.snap !== true) return false
-      if (filters.openNow && place.category !== 'home_grower' && !isOpenNow(place, now)) {
-        return false
-      }
-      return true
-    })
-  }, [allPlaces, filters, now])
+  const filteredSources = useMemo(
+    () =>
+      sources.filter((place) => {
+        if (allowedCategories && !allowedCategories.includes(place.category)) return false
+        if (filters.snap && place.snap !== true) return false
+        if (filters.openNow && !isOpenNow(place, now)) return false
+        return true
+      }),
+    [sources, allowedCategories, filters, now],
+  )
+
+  const neighborhoodGroups = useMemo(() => {
+    if (allowedCategories && !allowedCategories.includes('home_grower')) return []
+    const eligibleListings = filters.snap ? listings.filter((l) => l.snap === true) : listings
+    return groupListingsByNeighborhood(eligibleListings)
+  }, [listings, allowedCategories, filters.snap])
+
+  const filteredPlaces = useMemo(
+    () => [...filteredSources, ...neighborhoodGroups],
+    [filteredSources, neighborhoodGroups],
+  )
 
   return (
     <>
@@ -99,13 +118,20 @@ function FindFoodTab({ sources, listings, now }) {
       />
       <Map
         places={filteredPlaces}
-        onSelectPlace={setSelectedPlace}
+        onSelectPlace={handleSelectPlace}
         center={center}
         userLocation={userLocation}
       />
+      <CategoryLegend />
       <FilterBar filters={filters} onToggle={toggleFilter} />
-      <PlaceList places={filteredPlaces} now={now} onSelectPlace={setSelectedPlace} center={center} />
+      <PlaceList
+        places={filteredPlaces}
+        now={now}
+        onSelectPlace={handleSelectPlace}
+        center={center}
+      />
       <DetailSheet place={selectedPlace} now={now} onClose={() => setSelectedPlace(null)} />
+      <NeighborhoodSheet group={selectedGroup} now={now} onClose={() => setSelectedGroup(null)} />
     </>
   )
 }

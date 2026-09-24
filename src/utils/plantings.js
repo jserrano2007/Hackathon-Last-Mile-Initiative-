@@ -3,22 +3,9 @@ import { addDays, daysBetween, parseDateStr, toDateStr } from './dates'
 
 export { CROPS, getCropById }
 
-const STORAGE_KEY = 'freshmile_plantings'
-
 export const GROWING_METHODS = ['Garden bed', 'Container', 'Hydroponic']
 
-export function loadPlantings() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : []
-  } catch {
-    return []
-  }
-}
-
-export function savePlantings(plantings) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(plantings))
-}
+const LISTING_WINDOW_DAYS = 7
 
 export function getHarvestDateStr(planting) {
   const crop = getCropById(planting.cropId)
@@ -45,4 +32,16 @@ export function getGrowthProgress(planting, now) {
     fraction,
     isReady: daysRemaining <= 0,
   }
+}
+
+export function getListingEligibility(planting, now) {
+  const harvestDateStr = getHarvestDateStr(planting)
+  if (!harvestDateStr) return { canList: false, daysUntilEligible: null }
+
+  const today = toDateStr(now)
+  const daysUntilHarvest = daysBetween(today, harvestDateStr)
+  if (daysUntilHarvest <= LISTING_WINDOW_DAYS) {
+    return { canList: true, daysUntilEligible: 0 }
+  }
+  return { canList: false, daysUntilEligible: daysUntilHarvest - LISTING_WINDOW_DAYS }
 }

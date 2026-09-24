@@ -4,10 +4,8 @@ import { addDays, formatShortDate, parseDateStr, toDateStr } from './dates'
 
 export { CROPS, getCropById, formatShortDate }
 
-const STORAGE_KEY = 'freshmile_listings'
 const READY_EARLY_DAYS = 7
 const READY_LATE_DAYS = 28
-const JITTER_DEGREES = 0.004
 
 const UNIT_LABELS = {
   pint: 'pint',
@@ -43,57 +41,28 @@ export function formatListingPrice(listing) {
   return `$${listing.price}/${UNIT_LABELS[listing.unit] ?? listing.unit}`
 }
 
-export function jitteredCoords(neighborhood) {
-  const angle = Math.random() * Math.PI * 2
-  const radius = Math.random() * JITTER_DEGREES
-  return {
-    lat: neighborhood.lat + radius * Math.cos(angle),
-    lng: neighborhood.lng + radius * Math.sin(angle),
-  }
-}
+export function groupListingsByNeighborhood(listings) {
+  const groups = new Map()
 
-export function listingToPlace(listing) {
-  const neighborhood = NEIGHBORHOODS.find((n) => n.key === listing.neighborhoodKey)
-  const crop = getCropById(listing.cropId)
-  return {
-    id: listing.id,
-    name: listing.displayName,
+  listings.forEach((listing) => {
+    const neighborhood = NEIGHBORHOODS.find((n) => n.key === listing.neighborhoodKey)
+    if (!neighborhood) return
+    if (!groups.has(neighborhood.key)) {
+      groups.set(neighborhood.key, { neighborhood, listings: [] })
+    }
+    groups.get(neighborhood.key).listings.push(listing)
+  })
+
+  return [...groups.values()].map(({ neighborhood, listings: groupListings }) => ({
+    id: `neighborhood-${neighborhood.key}`,
+    isNeighborhoodGroup: true,
     category: 'home_grower',
-    address: null,
-    city: 'Hartford',
-    zip: null,
-    lat: listing.lat,
-    lng: listing.lng,
-    hours: null,
-    season: null,
-    snap: listing.snap,
-    snapMatch: null,
-    wicFmnp: null,
-    seniorFmnp: null,
-    phone: null,
-    website: null,
-    status: 'confirmed_2026',
-    notes: null,
-    sourceUrl: null,
-    cropId: listing.cropId,
-    cropName: crop ? crop.name : listing.cropId,
-    price: listing.price,
-    unit: listing.unit,
-    datePlanted: listing.datePlanted,
-    neighborhoodKey: listing.neighborhoodKey,
-    neighborhoodLabel: neighborhood ? neighborhood.label : '',
-  }
-}
-
-export function loadListings() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : []
-  } catch {
-    return []
-  }
-}
-
-export function saveListings(listings) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(listings))
+    name: `${neighborhood.label} - ${groupListings.length} neighbor listing${groupListings.length === 1 ? '' : 's'}`,
+    neighborhoodKey: neighborhood.key,
+    neighborhoodLabel: neighborhood.label,
+    lat: neighborhood.lat,
+    lng: neighborhood.lng,
+    count: groupListings.length,
+    listings: groupListings,
+  }))
 }

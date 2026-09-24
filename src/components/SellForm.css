@@ -29,7 +29,8 @@
 .field select,
 .field input[type='text'],
 .field input[type='date'],
-.field input[type='number'] {
+.field input[type='number'],
+.field input[type='file'] {
   font: inherit;
   font-size: 16px;
   padding: 10px 12px;
@@ -37,6 +38,14 @@
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text-h);
+}
+
+.field-readonly {
+  font-size: 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .field-checkbox {
@@ -50,11 +59,35 @@
   height: 20px;
 }
 
-.sell-preview {
-  margin: 0;
-  font-size: 15px;
+.sell-photo-error {
+  margin: -6px 0 0;
+  font-size: 14px;
+  color: #dc2626;
+}
+
+.sell-photo-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sell-photo-preview img {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.sell-photo-preview button {
+  font: inherit;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--accent);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: #dc2626;
+  cursor: pointer;
 }
 
 .sell-submit {
@@ -69,6 +102,41 @@
   cursor: pointer;
 }
 
+.sell-success,
+.sell-empty {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  color: var(--text);
+}
+
+.sell-success p,
+.sell-empty p {
+  margin: 0 0 8px;
+}
+
+.sell-success-btn,
+.sell-empty-btn {
+  margin-top: 8px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.sell-rule-note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
 .sell-listings {
   margin-top: 24px;
 }
@@ -76,6 +144,11 @@
 .sell-listings h2 {
   font-size: 18px;
   color: var(--text-h);
+}
+
+.sell-listings-empty {
+  font-size: 15px;
+  color: var(--text);
 }
 
 .sell-listings-list {
@@ -101,8 +174,25 @@
   gap: 12px;
 }
 
-.sell-remove-btn {
+.sell-listing-buttons {
   flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.sell-edit-btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.sell-remove-btn {
   font: inherit;
   font-size: 14px;
   font-weight: 600;

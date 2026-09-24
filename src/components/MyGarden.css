@@ -179,6 +179,12 @@
   cursor: pointer;
 }
 
+.garden-sell-btn:disabled {
+  opacity: 0.5;
+  color: var(--text);
+  cursor: default;
+}
+
 .garden-remove-btn {
   font: inherit;
   font-size: 14px;

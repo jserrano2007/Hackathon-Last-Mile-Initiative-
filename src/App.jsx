@@ -6,18 +6,27 @@ import GrowGuides from './components/GrowGuides'
 import MyGarden from './components/MyGarden'
 import { fetchPlaces } from './utils/places'
 import { getNow } from './utils/hours'
-import { loadListings, saveListings } from './utils/listings'
-import { loadPlantings, savePlantings } from './utils/plantings'
+import {
+  getListings,
+  saveListing,
+  updateListing,
+  removeListing,
+  getPlantings,
+  savePlanting,
+  removePlanting,
+  addPlantingNote,
+} from './data/store'
 import './App.css'
 
 function App() {
   const [activeTab, setActiveTab] = useState('find')
   const [places, setPlaces] = useState([])
   const [status, setStatus] = useState('loading')
-  const [listings, setListings] = useState(() => loadListings())
-  const [plantings, setPlantings] = useState(() => loadPlantings())
+  const [listings, setListings] = useState(() => getListings())
+  const [plantings, setPlantings] = useState(() => getPlantings())
   const [growPrefillCropId, setGrowPrefillCropId] = useState(null)
   const [sellPrefill, setSellPrefill] = useState(null)
+  const [sellPrefillToken, setSellPrefillToken] = useState(0)
   const now = useMemo(() => getNow(), [])
 
   useEffect(() => {
@@ -29,48 +38,34 @@ function App() {
       .catch(() => setStatus('error'))
   }, [])
 
-  function addListing(listing) {
-    setListings((prev) => {
-      const next = [...prev, listing]
-      saveListings(next)
-      return next
-    })
+  function handleSaveListing(listing) {
+    saveListing(listing)
+    setListings(getListings())
   }
 
-  function removeListing(id) {
-    setListings((prev) => {
-      const next = prev.filter((listing) => listing.id !== id)
-      saveListings(next)
-      return next
-    })
+  function handleUpdateListing(id, patch) {
+    updateListing(id, patch)
+    setListings(getListings())
   }
 
-  function addPlanting(planting) {
-    setPlantings((prev) => {
-      const next = [...prev, planting]
-      savePlantings(next)
-      return next
-    })
+  function handleRemoveListing(id) {
+    removeListing(id)
+    setListings(getListings())
   }
 
-  function removePlanting(id) {
-    setPlantings((prev) => {
-      const next = prev.filter((planting) => planting.id !== id)
-      savePlantings(next)
-      return next
-    })
+  function handleAddPlanting(planting) {
+    savePlanting(planting)
+    setPlantings(getPlantings())
   }
 
-  function addPlantingNote(plantingId, note) {
-    setPlantings((prev) => {
-      const next = prev.map((planting) =>
-        planting.id === plantingId
-          ? { ...planting, notes: [note, ...planting.notes] }
-          : planting,
-      )
-      savePlantings(next)
-      return next
-    })
+  function handleRemovePlanting(id) {
+    removePlanting(id)
+    setPlantings(getPlantings())
+  }
+
+  function handleAddPlantingNote(plantingId, note) {
+    addPlantingNote(plantingId, note)
+    setPlantings(getPlantings())
   }
 
   const handleConsumeGrowPrefill = useCallback(() => setGrowPrefillCropId(null), [])
@@ -83,6 +78,7 @@ function App() {
 
   function handleListForSale(prefill) {
     setSellPrefill(prefill)
+    setSellPrefillToken((token) => token + 1)
     setActiveTab('sell')
   }
 
@@ -105,23 +101,28 @@ function App() {
         )}
         {activeTab === 'sell' && (
           <SellForm
+            key={sellPrefillToken}
             listings={listings}
             now={now}
-            onAddListing={addListing}
-            onRemoveListing={removeListing}
             prefill={sellPrefill}
+            onSaveListing={handleSaveListing}
+            onUpdateListing={handleUpdateListing}
+            onRemoveListing={handleRemoveListing}
+            onListForSale={handleListForSale}
             onConsumePrefill={handleConsumeSellPrefill}
+            onGoToGarden={() => setActiveTab('garden')}
           />
         )}
         {activeTab === 'grow' && <GrowGuides onStartTracking={handleStartTracking} />}
         {activeTab === 'garden' && (
           <MyGarden
             plantings={plantings}
+            listings={listings}
             prefillCropId={growPrefillCropId}
             now={now}
-            onAddPlanting={addPlanting}
-            onRemovePlanting={removePlanting}
-            onAddNote={addPlantingNote}
+            onAddPlanting={handleAddPlanting}
+            onRemovePlanting={handleRemovePlanting}
+            onAddNote={handleAddPlantingNote}
             onListForSale={handleListForSale}
             onConsumePrefill={handleConsumeGrowPrefill}
             onGoToGrow={() => setActiveTab('grow')}

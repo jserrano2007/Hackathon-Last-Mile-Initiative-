@@ -1,33 +1,5 @@
 export const HARTFORD_CENTER = { lat: 41.7658, lng: -72.6734 }
 
-export const CATEGORY_LABELS = {
-  farmers_market: 'Farmers market',
-  grocery: 'Grocery store',
-  small_grocery: 'Small grocery',
-  urban_farm: 'Urban farm',
-  community_garden: 'Community garden',
-  food_pantry: 'Food pantry',
-  home_grower: 'Home grower',
-}
-
-export const CATEGORY_COLORS = {
-  farmers_market: '#e8b923',
-  grocery: '#2e8b57',
-  small_grocery: '#2e8b57',
-  urban_farm: '#0b4d2e',
-  community_garden: '#0b4d2e',
-  food_pantry: '#6b7280',
-  home_grower: '#dc2626',
-}
-
-export function categoryLabel(category) {
-  return CATEGORY_LABELS[category] ?? category
-}
-
-export function categoryColor(category) {
-  return CATEGORY_COLORS[category] ?? '#3b82f6'
-}
-
 const EARTH_RADIUS_MILES = 3958.8
 
 export function distanceMiles(lat1, lng1, lat2, lng2) {
